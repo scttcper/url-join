@@ -4,7 +4,7 @@
   "description": "Join strings together and normalize the resulting url",
   "author": "Scott Cooper <scttcper@gmail.com>",
   "license": "MIT",
-  "repository": "",
+  "repository": "scttcper/url-join",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "module": "dist/module/index.js",
