@@ -1,0 +1,59 @@
+{
+  "name": "@ctrl/url-join",
+  "version": "0.0.0-placeholder",
+  "description": "Join strings together and normalize the resulting url",
+  "author": "Scott Cooper <scttcper@gmail.com>",
+  "license": "MIT",
+  "repository": "",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "module": "dist/module/index.js",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "keywords": [
+    "url-join",
+    "url",
+    "join",
+    "trailing slash",
+    "typescript"
+  ],
+  "scripts": {
+    "lint": "eslint --ext .js,.ts, . --format codeframe",
+    "lint:fix": "eslint --fix --ext .js,.ts, . --format codeframe",
+    "prepare": "npm run build",
+    "build": "tsc -p tsconfig.build.json && tsc -p tsconfig.module.json",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --ci --reporters=default --reporters=jest-junit --coverage"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "7.10.4",
+    "@babel/preset-typescript": "7.10.4",
+    "@ctrl/eslint-config": "1.0.6",
+    "@jest/globals": "26.4.2",
+    "@types/node": "14.6.0",
+    "jest": "26.4.2",
+    "jest-junit": "11.1.0",
+    "typescript": "4.0.2"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-typescript"
+    ],
+    "plugins": [
+      "@babel/plugin-transform-modules-commonjs"
+    ]
+  },
+  "release": {
+    "branch": "master"
+  },
+  "engines": {
+    "node": ">=10"
+  }
+}
