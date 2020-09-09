@@ -1,6 +1,6 @@
 # url-join [![npm](https://badgen.net/npm/v/url-join)](https://www.npmjs.com/package/url-join) [![CircleCI](https://circleci.com/gh/scttcper/url-join.svg?style=svg)](https://circleci.com/gh/scttcper/url-join) [![coverage](https://badgen.net/codecov/c/github/scttcper/url-join)](https://codecov.io/gh/scttcper/url-join) [![bundlesize](https://badgen.net/bundlephobia/min/@ctrl/url-join)](https://bundlephobia.com/result?p=@ctrl/url-join)
 
-> A typescript fork of [jfromaniello/url-join](https://github.com/jfromaniello/url-join) with additional options
+> A typescript fork of [jfromaniello/url-join](https://github.com/jfromaniello/url-join) with additional options.
 
 ### Install
 ```
