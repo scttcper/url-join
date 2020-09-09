@@ -12,7 +12,7 @@ npm install @ctrl/url-join
 ```ts
 import { urlJoin } from '@ctrl/url-join';
 
-const url = urljoin('http://www.example.com', 'a', '/b/cd', '?foo=123')
+const url = urlJoin('http://www.example.com', 'a', '/b/cd', '?foo=123')
 // http://www.example.com/a/b/cd?foo=123
 ```
 
