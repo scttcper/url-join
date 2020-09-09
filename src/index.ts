@@ -82,4 +82,4 @@ export function customUrlJoin(options: UrlJoinOptions = {}) {
   };
 }
 
-export const urljoin = customUrlJoin();
+export const urlJoin = customUrlJoin();

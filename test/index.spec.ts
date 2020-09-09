@@ -1,137 +1,137 @@
 import { describe, it, expect } from '@jest/globals';
 
-import { urljoin, customUrlJoin } from '../src';
+import { urlJoin, customUrlJoin } from '../src';
 
 describe('url join', () => {
   it('should work for simple case', () => {
-    expect(urljoin('http://www.example.com/', 'foo/bar', '?test=123'))
+    expect(urlJoin('http://www.example.com/', 'foo/bar', '?test=123'))
       .toBe('http://www.example.com/foo/bar?test=123');
   });
 
   it('should test readme example', () => {
-    expect(urljoin('http://www.example.com', 'a', '/b/cd', '?foo=123'))
+    expect(urlJoin('http://www.example.com', 'a', '/b/cd', '?foo=123'))
       .toBe('http://www.example.com/a/b/cd?foo=123');
   });
 
   it('should work for simple case with new syntax', () => {
-    expect(urljoin(['http://www.example.com/', 'foo/bar', '?test=123']))
+    expect(urlJoin(['http://www.example.com/', 'foo/bar', '?test=123']))
       .toBe('http://www.example.com/foo/bar?test=123');
   });
 
   it('should work for hashbang urls', () => {
-    expect(urljoin(['http://www.example.com', '#!', 'foo/bar', '?test=123']))
+    expect(urlJoin(['http://www.example.com', '#!', 'foo/bar', '?test=123']))
       .toBe('http://www.example.com/#!/foo/bar?test=123');
   });
 
   it('should be able to join protocol', () => {
-    expect(urljoin('http:', 'www.example.com/', 'foo/bar', '?test=123'))
+    expect(urlJoin('http:', 'www.example.com/', 'foo/bar', '?test=123'))
       .toBe('http://www.example.com/foo/bar?test=123');
   });
 
   it('should be able to join protocol with slashes', () => {
-    expect(urljoin('http://', 'www.example.com/', 'foo/bar', '?test=123'))
+    expect(urlJoin('http://', 'www.example.com/', 'foo/bar', '?test=123'))
       .toBe('http://www.example.com/foo/bar?test=123');
   });
 
   it('should remove extra slashes', () => {
-    expect(urljoin('http:', 'www.example.com///', 'foo/bar', '?test=123'))
+    expect(urlJoin('http:', 'www.example.com///', 'foo/bar', '?test=123'))
       .toBe('http://www.example.com/foo/bar?test=123');
   });
 
   it('should not remove extra slashes in an encoded URL', () => {
-    expect(urljoin('http:', 'www.example.com///', 'foo/bar', '?url=http%3A//Ftest.com'))
+    expect(urlJoin('http:', 'www.example.com///', 'foo/bar', '?url=http%3A//Ftest.com'))
       .toBe('http://www.example.com/foo/bar?url=http%3A//Ftest.com');
 
-    expect(urljoin('http://a.com/23d04b3/', '/b/c.html')).toBe('http://a.com/23d04b3/b/c.html');
-    expect(urljoin('http://a.com/23d04b3/', '/b/c.html')).not.toBe('http://a.com/23d04b3//b/c.html');
+    expect(urlJoin('http://a.com/23d04b3/', '/b/c.html')).toBe('http://a.com/23d04b3/b/c.html');
+    expect(urlJoin('http://a.com/23d04b3/', '/b/c.html')).not.toBe('http://a.com/23d04b3//b/c.html');
   });
 
   it('should support anchors in urls', () => {
-    expect(urljoin('http:', 'www.example.com///', 'foo/bar', '?test=123', '#faaaaa')).toBe(
+    expect(urlJoin('http:', 'www.example.com///', 'foo/bar', '?test=123', '#faaaaa')).toBe(
       'http://www.example.com/foo/bar?test=123#faaaaa',
     );
   });
 
   it('should support protocol-relative urls', () => {
-    expect(urljoin('//www.example.com', 'foo/bar', '?test=123')).toBe(
+    expect(urlJoin('//www.example.com', 'foo/bar', '?test=123')).toBe(
       '//www.example.com/foo/bar?test=123',
     );
   });
 
   it('should support file protocol urls', () => {
-    expect(urljoin('file:/', 'android_asset', 'foo/bar')).toBe('file://android_asset/foo/bar');
+    expect(urlJoin('file:/', 'android_asset', 'foo/bar')).toBe('file://android_asset/foo/bar');
 
-    expect(urljoin('file:', '/android_asset', 'foo/bar')).toBe('file://android_asset/foo/bar');
+    expect(urlJoin('file:', '/android_asset', 'foo/bar')).toBe('file://android_asset/foo/bar');
   });
 
   it('should support absolute file protocol urls', () => {
-    expect(urljoin('file:', '///android_asset', 'foo/bar')).toBe('file:///android_asset/foo/bar');
-    expect(urljoin('file:///', 'android_asset', 'foo/bar')).toBe('file:///android_asset/foo/bar');
-    expect(urljoin('file:///', '//android_asset', 'foo/bar')).toBe('file:///android_asset/foo/bar');
-    expect(urljoin('file:///android_asset', 'foo/bar')).toBe('file:///android_asset/foo/bar');
+    expect(urlJoin('file:', '///android_asset', 'foo/bar')).toBe('file:///android_asset/foo/bar');
+    expect(urlJoin('file:///', 'android_asset', 'foo/bar')).toBe('file:///android_asset/foo/bar');
+    expect(urlJoin('file:///', '//android_asset', 'foo/bar')).toBe('file:///android_asset/foo/bar');
+    expect(urlJoin('file:///android_asset', 'foo/bar')).toBe('file:///android_asset/foo/bar');
   });
 
   it('should merge multiple query params properly', () => {
-    expect(urljoin('http:', 'www.example.com///', 'foo/bar', '?test=123', '?key=456'))
+    expect(urlJoin('http:', 'www.example.com///', 'foo/bar', '?test=123', '?key=456'))
       .toBe('http://www.example.com/foo/bar?test=123&key=456');
 
     expect(
-      urljoin('http:', 'www.example.com///', 'foo/bar', '?test=123', '?boom=value', '&key=456'),
+      urlJoin('http:', 'www.example.com///', 'foo/bar', '?test=123', '?boom=value', '&key=456'),
     ).toBe('http://www.example.com/foo/bar?test=123&boom=value&key=456');
 
-    expect(urljoin('http://example.org/x', '?a=1', '?b=2', '?c=3', '?d=4'))
+    expect(urlJoin('http://example.org/x', '?a=1', '?b=2', '?c=3', '?d=4'))
       .toBe('http://example.org/x?a=1&b=2&c=3&d=4');
   });
 
   it('should merge slashes in paths correctly', () => {
-    expect(urljoin('http://example.org', 'a//', 'b//', 'A//', 'B//'))
+    expect(urlJoin('http://example.org', 'a//', 'b//', 'A//', 'B//'))
       .toBe('http://example.org/a/b/A/B/');
   });
 
   it('should merge colons in paths correctly', () => {
-    expect(urljoin('http://example.org/', ':foo:', 'bar')).toBe('http://example.org/:foo:/bar');
+    expect(urlJoin('http://example.org/', ':foo:', 'bar')).toBe('http://example.org/:foo:/bar');
   });
 
   it('should merge just a simple path without URL correctly', () => {
-    expect(urljoin('/', 'test')).toBe('/test');
+    expect(urlJoin('/', 'test')).toBe('/test');
   });
 
   it('should merge a path with colon properly', () => {
-    expect(urljoin('/users/:userId', '/cars/:carId')).toBe('/users/:userId/cars/:carId');
+    expect(urlJoin('/users/:userId', '/cars/:carId')).toBe('/users/:userId/cars/:carId');
   });
 
   it('should merge slashes in protocol correctly', () => {
-    expect(urljoin('http://example.org', 'a')).toBe('http://example.org/a');
-    expect(urljoin('http:', '//example.org', 'a')).toBe('http://example.org/a');
-    expect(urljoin('http:///example.org', 'a')).toBe('http://example.org/a');
-    expect(urljoin('file:///example.org', 'a')).toBe('file:///example.org/a');
+    expect(urlJoin('http://example.org', 'a')).toBe('http://example.org/a');
+    expect(urlJoin('http:', '//example.org', 'a')).toBe('http://example.org/a');
+    expect(urlJoin('http:///example.org', 'a')).toBe('http://example.org/a');
+    expect(urlJoin('file:///example.org', 'a')).toBe('file:///example.org/a');
 
-    expect(urljoin('file:example.org', 'a')).toBe('file://example.org/a');
+    expect(urlJoin('file:example.org', 'a')).toBe('file://example.org/a');
 
-    expect(urljoin('file:/', 'example.org', 'a')).toBe('file://example.org/a');
-    expect(urljoin('file:', '/example.org', 'a')).toBe('file://example.org/a');
-    expect(urljoin('file:', '//example.org', 'a')).toBe('file://example.org/a');
+    expect(urlJoin('file:/', 'example.org', 'a')).toBe('file://example.org/a');
+    expect(urlJoin('file:', '/example.org', 'a')).toBe('file://example.org/a');
+    expect(urlJoin('file:', '//example.org', 'a')).toBe('file://example.org/a');
   });
 
   it('should skip empty strings', () => {
-    expect(urljoin('http://foobar.com', '', 'test')).toBe('http://foobar.com/test');
-    expect(urljoin('', 'http://foobar.com', '', 'test')).toBe('http://foobar.com/test');
+    expect(urlJoin('http://foobar.com', '', 'test')).toBe('http://foobar.com/test');
+    expect(urlJoin('', 'http://foobar.com', '', 'test')).toBe('http://foobar.com/test');
   });
 
   it('should return an empty string if no arguments are supplied', () => {
-    expect(urljoin()).toBe('');
+    expect(urlJoin()).toBe('');
   });
 
   it('should skip intermediary slashes', () => {
-    expect(urljoin('http://me.ly.com:3002', '/', '/demo/scrollbar')).toBe(
+    expect(urlJoin('http://me.ly.com:3002', '/', '/demo/scrollbar')).toBe(
       'http://me.ly.com:3002/demo/scrollbar',
     );
 
-    expect(urljoin('http://me.ly.com:3002', '//', 'foo/bar/')).toBe(
+    expect(urlJoin('http://me.ly.com:3002', '//', 'foo/bar/')).toBe(
       'http://me.ly.com:3002/foo/bar/',
     );
 
-    expect(urljoin('http://me.ly.com:3002', '//', 'foo', '/', 'bar/')).toBe(
+    expect(urlJoin('http://me.ly.com:3002', '//', 'foo', '/', 'bar/')).toBe(
       'http://me.ly.com:3002/foo/bar/',
     );
   });
@@ -139,7 +139,7 @@ describe('url join', () => {
   it('should preserve trailing slashes between each argmuent passed', () => {
     const trailingUrlJoin = customUrlJoin({ trailingSlash: true });
 
-    expect(urljoin('https://example.com', '#', 'foobar'))
+    expect(urlJoin('https://example.com', '#', 'foobar'))
       .toBe('https://example.com#/foobar');
 
     expect(trailingUrlJoin('https://example.com', '#', 'foobar'))
@@ -150,7 +150,7 @@ describe('url join', () => {
     expect(trailingUrlJoin('https://example.com', '#foobar', '?foo=123', '?test=abc'))
       .toBe('https://example.com/#foobar/?foo=123/&test=abc');
 
-    expect(urljoin(['https://example.com', '#'])).toBe('https://example.com#');
+    expect(urlJoin(['https://example.com', '#'])).toBe('https://example.com#');
 
     expect(trailingUrlJoin('https://example.com', '#')).toBe('https://example.com/#');
 
@@ -158,7 +158,7 @@ describe('url join', () => {
       'https://example.com/results/',
     );
 
-    expect(urljoin(['https://example.com', '#/something']))
+    expect(urlJoin(['https://example.com', '#/something']))
       .toBe('https://example.com#/something');
 
     expect(trailingUrlJoin('https://example.com', '#/something'))
