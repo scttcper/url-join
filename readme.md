@@ -41,3 +41,4 @@ trailingUrlJoin('https://example.com', 'results', '?q=foo', '&page=1')
 ### See Also
 - [jfromaniello/url-join](https://github.com/jfromaniello/url-join) original source
 - [sindresorhus/query-string](https://github.com/sindresorhus/query-string) properly parsing and formatting query strings
+- [sindresorhus/normalize-url](https://github.com/sindresorhus/normalize-url)
