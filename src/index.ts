@@ -55,7 +55,7 @@ function normalize(options: UrlJoinOptions, strArray: string[]): string {
 
   // Replace ? in parameters with &
   let parts = str.split('?');
-  str = parts.shift() as string + (parts.length > 0 ? '?' : '') + parts.join('&');
+  str = (parts.shift() as string) + (parts.length > 0 ? '?' : '') + parts.join('&');
 
   return str;
 }
