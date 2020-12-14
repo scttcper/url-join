@@ -12,7 +12,7 @@
     "noEmitOnError": true,
     "noUnusedLocals": true,
     "declaration": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "outDir": "dist"
   }
 }
