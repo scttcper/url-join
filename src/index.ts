@@ -6,7 +6,7 @@ function normalize(options: UrlJoinOptions, strArray: string[]): string {
 
   // If the first part is a plain protocol, we combine it with the next part.
   if (/^[^/:]+:\/*$/.test(strArray[0]) && strArray.length > 1) {
-    const first = strArray.shift() as string;
+    const first = strArray.shift() ?? '';
     strArray[0] = first + strArray[0];
   }
 
@@ -55,7 +55,7 @@ function normalize(options: UrlJoinOptions, strArray: string[]): string {
 
   // Replace ? in parameters with &
   let parts = str.split('?');
-  str = (parts.shift() as string) + (parts.length > 0 ? '?' : '') + parts.join('&');
+  str = (parts.shift() ?? '') + (parts.length > 0 ? '?' : '') + parts.join('&');
 
   return str;
 }
