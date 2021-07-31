@@ -54,7 +54,7 @@
     }
   },
   "release": {
-    "branches": "master"
+    "branches": "main"
   },
   "publishConfig": {
     "access": "public"
