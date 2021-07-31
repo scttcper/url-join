@@ -42,6 +42,6 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
           requires:
             - test
