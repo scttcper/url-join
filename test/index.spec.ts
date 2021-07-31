@@ -1,6 +1,6 @@
-import { describe, it, expect } from '@jest/globals';
+import { describe, expect, it } from '@jest/globals';
 
-import { urlJoin, customUrlJoin } from '../src';
+import { customUrlJoin, urlJoin } from '../src';
 
 describe('url join', () => {
   it('should work for simple case', () => {

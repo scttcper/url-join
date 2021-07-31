@@ -5,20 +5,21 @@ function normalize(options: UrlJoinOptions, strArray: string[]): string {
   }
 
   // If the first part is a plain protocol, we combine it with the next part.
-  if (/^[^/:]+:\/*$/.test(strArray[0]) && strArray.length > 1) {
+  if (/^[^/:]+:\/*$/.test(strArray[0]!) && strArray.length > 1) {
     const first = strArray.shift() ?? '';
+    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
     strArray[0] = first + strArray[0];
   }
 
   // There must be two or three slashes in the file protocol, two slashes in anything else.
-  if (strArray[0].startsWith('file:///')) {
-    strArray[0] = strArray[0].replace(/^([^/:]+):\/*/, '$1:///');
+  if (strArray[0]!.startsWith('file:///')) {
+    strArray[0] = strArray[0]!.replace(/^([^/:]+):\/*/, '$1:///');
   } else {
-    strArray[0] = strArray[0].replace(/^([^/:]+):\/*/, '$1://');
+    strArray[0] = strArray[0]!.replace(/^([^/:]+):\/*/, '$1://');
   }
 
   for (let i = 0; i < strArray.length; i++) {
-    let component = strArray[i];
+    let component = strArray[i]!;
 
     if (component === '') {
       continue;
@@ -54,7 +55,7 @@ function normalize(options: UrlJoinOptions, strArray: string[]): string {
   }
 
   // Replace ? in parameters with &
-  let parts = str.split('?');
+  const parts = str.split('?');
   str = (parts.shift() ?? '') + (parts.length > 0 ? '?' : '') + parts.join('&');
 
   return str;
