@@ -1,7 +1,8 @@
 {
   "extends": "@sindresorhus/tsconfig",
   "compilerOptions": {
-    "lib": ["ES2020", "DOM"],
-    "outDir": "dist"
+    "outDir": "dist",
+    // Until ava works
+    "moduleResolution": "node"
   }
 }
