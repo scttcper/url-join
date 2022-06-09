@@ -14,7 +14,7 @@ jobs:
           name: test
           command: npm run test:ci
       - store_test_results:
-          path: ./reports
+          path: ./junit.xml
       - run:
           name: lint
           command: npm run lint
