@@ -1,8 +1,6 @@
 {
   "extends": "@sindresorhus/tsconfig",
   "compilerOptions": {
-    "outDir": "dist",
-    // Until ava works
-    "moduleResolution": "node"
+    "outDir": "dist"
   }
 }
